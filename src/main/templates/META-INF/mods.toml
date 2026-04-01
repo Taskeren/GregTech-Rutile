@@ -12,7 +12,7 @@ displayName = "${mod_name}"
 # Specification: https://docs.minecraftforge.net/en/latest/misc/updatechecker/
 #updateJSONURL="https://change.me.example.invalid/updates.json"
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
-#logoFile="examplemod.png" # A file name in the root of the JAR
+#logoFile="examplemod.png" # A file prefixId in the root of the JAR
 #credits=""
 authors = "${mod_authors}"
 

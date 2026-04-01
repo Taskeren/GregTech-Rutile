@@ -1,0 +1,20 @@
+{
+  "block.rutile.neutronium_coated_aluminium_drum": "Neutronium Coated Aluminium Drum",
+  "block.rutile.neutronium_coated_bronze_drum": "Neutronium Coated Bronze Drum",
+  "block.rutile.neutronium_coated_gold_drum": "Neutronium Coated Gold Drum",
+  "block.rutile.neutronium_coated_stainless_steel_drum": "Neutronium Coated Stainless Steel Drum",
+  "block.rutile.neutronium_coated_steel_drum": "Neutronium Coated Steel Drum",
+  "block.rutile.neutronium_coated_titanium_drum": "Neutronium Coated Titanium Drum",
+  "block.rutile.neutronium_coated_tungsten_steel_drum": "Neutronium Coated Tungstensteel Drum",
+  "block.rutile.neutronium_coated_wood_drum": "Neutronium Coated Wooden Barrel",
+  "block.rutile.ptfe_coated_aluminium_drum": "PTFE Coated Aluminium Drum",
+  "block.rutile.ptfe_coated_bronze_drum": "PTFE Coated Bronze Drum",
+  "block.rutile.ptfe_coated_gold_drum": "PTFE Coated Gold Drum",
+  "block.rutile.ptfe_coated_stainless_steel_drum": "PTFE Coated Stainless Steel Drum",
+  "block.rutile.ptfe_coated_steel_drum": "PTFE Coated Steel Drum",
+  "block.rutile.ptfe_coated_titanium_drum": "PTFE Coated Titanium Drum",
+  "block.rutile.ptfe_coated_tungsten_steel_drum": "PTFE Coated Tungstensteel Drum",
+  "block.rutile.ptfe_coated_wood_drum": "PTFE Coated Wooden Barrel",
+  "item.rutile.fluid_cell": "%s Fluid Cell",
+  "rutile.universal.tooltip.fluid_stored": "§2Fluid Stored: §f%s, %s mB %s"
+}
