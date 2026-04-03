@@ -1,5 +1,6 @@
 package cn.elytra.mod.rutile.common.unitcell;
 
+import cn.elytra.mod.rutile.common.RutileConfig;
 import cn.elytra.mod.rutile.common.RutileRegistration;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -8,11 +9,14 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKey;
 import com.gregtechceu.gtceu.api.item.component.ICustomDescriptionId;
+import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
 import it.unimi.dsi.fastutil.objects.ReferenceList;
 import net.minecraft.ChatFormatting;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
@@ -28,7 +32,10 @@ import org.jetbrains.annotations.ApiStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
+
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class UnitCell {
@@ -101,5 +108,25 @@ public class UnitCell {
                     .withStyle(ChatFormatting.RED, ChatFormatting.ITALIC);
             }
         };
+    }
+
+    public static void addRecipes(Consumer<FinishedRecipe> provider) {
+        if(!RutileConfig.get().unitCell.enable) return;
+
+        ASSEMBLER_RECIPES.recipeBuilder("unit_fluid_cell_tin_alloy")
+            .inputItems(GTItems.FLUID_CELL)
+            .inputFluids(GTMaterials.TinAlloy.getFluid(144))
+            .outputItems(RutileRegistration.FLUID_CELL)
+            .duration(25)
+            .inputEU(16)
+            .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("unit_fluid_cell_pvc")
+            .inputItems(GTItems.FLUID_CELL, 8)
+            .inputFluids(GTMaterials.PolyvinylChloride.getFluid(144))
+            .outputItems(RutileRegistration.FLUID_CELL, 8)
+            .duration(25)
+            .inputEU(16)
+            .save(provider);
     }
 }

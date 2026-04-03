@@ -1,12 +1,9 @@
 package cn.elytra.mod.rutile.common.drumcoating;
 
+import cn.elytra.mod.rutile.common.RutileConfig;
 import com.gregtechceu.gtceu.api.capability.IPropertyFluidFilter;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.fluids.PropertyFluidFilter;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-
-import java.util.Objects;
 
 public class OverridePropertyFluidFilter {
     public static final OverridePropertyFluidFilter PTFE = new OverridePropertyFluidFilter(
@@ -17,12 +14,11 @@ public class OverridePropertyFluidFilter {
         null
     );
     public static final OverridePropertyFluidFilter NEUTRONIUM = new OverridePropertyFluidFilter(
-        Objects.requireNonNull(GTMaterials.Neutronium.getProperty(PropertyKey.FLUID_PIPE),
-            "Neutronium Fluid Pipe Property").getMaxFluidTemperature(),
+        RutileConfig.get().drumCoating.getNtCoatingTemperature().get(),
         true,
         true,
         true,
-        null
+        true
     );
 
     public final Integer maxTemperature;
