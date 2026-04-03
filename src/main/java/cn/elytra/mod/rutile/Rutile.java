@@ -4,7 +4,6 @@ import cn.elytra.mod.rutile.common.RutileConfig;
 import cn.elytra.mod.rutile.common.RutileRegistration;
 import cn.elytra.mod.rutile.data.RutileData;
 import com.gregtechceu.gtceu.GTCEu;
-import com.machinezoo.noexception.optional.OptionalBoolean;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -46,10 +45,10 @@ public class Rutile {
             .map(IModInfo::getVersion);
     }
 
-    public static OptionalBoolean isGTVersionLowerThan(String version, boolean orEquals) {
-        Optional<ArtifactVersion> v = gtVersion();
-        if (v.isEmpty()) return OptionalBoolean.empty();
-        int compare = v.get().compareTo(new DefaultArtifactVersion(version));
-        return OptionalBoolean.of(compare < 0 || orEquals && compare == 0);
+    public static Optional<Boolean> isGTVersionLowerThan(String version, boolean orEquals) {
+        return gtVersion().map(v -> {
+            int compare = v.compareTo(new DefaultArtifactVersion(version));
+            return compare < 0 || orEquals && compare == 0;
+        });
     }
 }
