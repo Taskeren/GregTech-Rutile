@@ -19,7 +19,8 @@ public class QuantumTankEnhancement {
     private static final Lazy<MachineDefinition[]> SUPER_TANKS = Lazy.of(() -> ArrayUtils.addAll(GTMachines.SUPER_TANK,
         GTMachines.QUANTUM_TANK));
 
-    private static final boolean enable = Rutile.isGTVersionLowerThan("7.0.0", false).getAsBoolean();
+    private static final boolean enable = Rutile.isGTVersionLowerThan("7.0.0", false)
+        .orElseThrow(() -> new RuntimeException("Unable to get GregTech version"));
 
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
