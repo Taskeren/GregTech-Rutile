@@ -2,11 +2,15 @@ package cn.elytra.mod.rutile;
 
 import cn.elytra.mod.rutile.common.RutileConfig;
 import cn.elytra.mod.rutile.common.RutileRegistration;
+import cn.elytra.mod.rutile.core.mixin.ItemAccessor;
 import cn.elytra.mod.rutile.data.RutileData;
 import com.gregtechceu.gtceu.GTCEu;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
@@ -16,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Optional;
 
 @Mod(Rutile.MOD_ID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Rutile {
 
     public static final String MOD_ID = "rutile";
@@ -50,5 +55,12 @@ public class Rutile {
             int compare = v.compareTo(new DefaultArtifactVersion(version));
             return compare < 0 || orEquals && compare == 0;
         });
+    }
+
+    @SubscribeEvent
+    static void onLoadComplete(FMLLoadCompleteEvent event) {
+        if (RutileConfig.get().misc.emptyBucketSizeEnlarge) {
+            ((ItemAccessor) Items.BUCKET).setMaxStackSize(64);
+        }
     }
 }

@@ -2,8 +2,10 @@
   "required": true,
   "compatibilityLevel": "JAVA_17",
   "package": "cn.elytra.mod.rutile.core.mixin",
+  "refmap": "rutile.refmap.json",
   "mixins": [
     "DrumMachineMixin",
-    "GTMachineUtilsMixin"
+    "GTMachineUtilsMixin",
+    "ItemAccessor"
   ]
 }

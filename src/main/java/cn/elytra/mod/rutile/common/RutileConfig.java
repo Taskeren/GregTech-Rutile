@@ -48,6 +48,9 @@ public class RutileConfig {
         @Configurable
         @Configurable.Comment("Whether allow drums input from the bottom side.")
         public boolean drumBottomInput = true;
+        @Configurable
+        @Configurable.Comment("Whether enlarge the max stack size of empty buckets to 64.")
+        public boolean emptyBucketSizeEnlarge = true;
     }
 
     @Configurable
