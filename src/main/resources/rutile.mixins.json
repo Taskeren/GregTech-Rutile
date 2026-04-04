@@ -3,9 +3,11 @@
   "compatibilityLevel": "JAVA_17",
   "package": "cn.elytra.mod.rutile.core.mixin",
   "refmap": "rutile.refmap.json",
+  "plugin": "cn.elytra.mod.rutile.core.RutileMixinPlugin",
   "mixins": [
     "DrumMachineMixin",
     "GTMachineUtilsMixin",
-    "ItemAccessor"
+    "ItemAccessor",
+    "lowdrag.SlotWidgetMixin"
   ]
 }
