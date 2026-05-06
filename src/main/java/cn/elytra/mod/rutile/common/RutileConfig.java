@@ -51,6 +51,9 @@ public class RutileConfig {
         @Configurable
         @Configurable.Comment("Whether enlarge the max stack size of empty buckets to 64.")
         public boolean emptyBucketSizeEnlarge = true;
+        @Configurable
+        @Configurable.Comment("Whether enable Rutile-style EMI workstation/catalyst list.")
+        public boolean useRutileStyleEMIWorkstationList = true;
     }
 
     @Configurable
