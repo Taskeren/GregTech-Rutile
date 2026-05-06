@@ -7,15 +7,16 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.category.GTRecipeCategory;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.machinezoo.noexception.Exceptions;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import org.apache.commons.compress.utils.Lists;
-import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -25,6 +26,8 @@ import static com.gregtechceu.gtceu.integration.emi.recipe.GTRecipeEMICategory.m
 
 @ApiStatus.Internal
 public final class BetterWorkstation {
+
+    private static final Logger log = LoggerFactory.getLogger(BetterWorkstation.class);
 
     public static void registerWorkStations(EmiRegistry registry) {
         // collect the relationship about recipe types and the machines that can work the recipe types.
@@ -43,7 +46,13 @@ public final class BetterWorkstation {
             // make the list of workstations.
             // categories from the same recipe type has the exactly same workstations.
             Collection<MachineDefinition> workstationsUngrouped = recipeTypeToMachineDefinitions.get(recipeType);
-            Collection<EmiIngredient> workstations = groupByClass(workstationsUngrouped);
+            Collection<EmiIngredient> workstations;
+            try {
+                workstations = groupByClass(workstationsUngrouped);
+            } catch (Exception e) {
+                log.error("Exception occurred while grouping workstations for {}, the workstations are {}", recipeType.registryName, ArrayUtils.toString(workstationsUngrouped));
+                continue;
+            }
 
             // register workstations for the categories.
             for (GTRecipeCategory category : recipeType.getCategories()) {
@@ -56,7 +65,7 @@ public final class BetterWorkstation {
         }
     }
 
-    private static Collection<EmiIngredient> groupByClass(Collection<MachineDefinition> input) {
+    private static Collection<EmiIngredient> groupByClass(Collection<MachineDefinition> input) throws Exception {
         Multimap<Object, MachineDefinition> groupingMap = ArrayListMultimap.create();
 
         // grouping by the machineSupplier.
@@ -65,7 +74,8 @@ public final class BetterWorkstation {
         // P.S., the lambda expression will be singleton, if there's nothing captured, otherwise, they will be instantiated for each.
         // so we're comparing the class of the lambdas instead of the lambdas themselves.
         for (MachineDefinition definition : input) {
-            Object machineSupplierClass = Exceptions.sneak().supplier(() -> FIELD_MACHINE_SUPPLIER.get(definition).getClass()).get();
+            Object machineSupplierClass = FIELD_MACHINE_SUPPLIER.get(definition) /* definition.machineSupplier */
+                    .getClass();
             groupingMap.put(machineSupplierClass, definition);
         }
 
@@ -94,8 +104,7 @@ public final class BetterWorkstation {
             FIELD_MACHINE_SUPPLIER = MachineDefinition.class.getDeclaredField("machineSupplier");
             FIELD_MACHINE_SUPPLIER.setAccessible(true);
         } catch (NoSuchFieldException e) {
-            ExceptionUtils.rethrow(e);
-            throw new Error("unreachable!");
+            throw new RuntimeException("Failed to find MachineDefinition#machineSupplier", e);
         }
     }
 }

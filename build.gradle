@@ -16,7 +16,9 @@ group = mod_group_id
 
 // update project version by Git
 try {
-    version = gitVersion()
+    String v = gitVersion()
+    if (v.startsWith('v')) v = v.substring(1)
+    version = v
     mod_version = version
 } catch (Throwable e) {
     println("Failed to read the version information from Git.")

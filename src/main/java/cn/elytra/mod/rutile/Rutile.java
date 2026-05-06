@@ -63,4 +63,9 @@ public class Rutile {
             ((ItemAccessor) Items.BUCKET).setMaxStackSize(64);
         }
     }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Throwable> T typeErasure(final Throwable throwable) throws T {
+        return (T) throwable;
+    }
 }
