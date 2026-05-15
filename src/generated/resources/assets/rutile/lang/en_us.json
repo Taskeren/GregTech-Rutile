@@ -20,5 +20,7 @@
   "block.rutile.ptfe_coated_tungsten_steel_drum": "PTFE Coated Tungstensteel Drum",
   "block.rutile.ptfe_coated_wood_drum": "PTFE Coated Wooden Barrel",
   "item.rutile.fluid_cell": "%s Fluid Cell",
+  "rutile.never_hatches.export.tooltip": "§7Unable to export anything, just a structural marker.",
+  "rutile.never_hatches.import.tooltip": "§7Unable to import anything, just a structural marker.",
   "rutile.universal.tooltip.fluid_stored": "§2Fluid Stored: §f%s, %s mB %s"
 }

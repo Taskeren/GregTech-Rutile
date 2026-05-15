@@ -20,5 +20,7 @@
   "block.rutile.ptfe_coated_tungsten_steel_drum": "ɯnɹᗡ ןǝǝʇsuǝʇsbun⟘ pǝʇɐoƆ ƎℲ⟘Ԁ",
   "block.rutile.ptfe_coated_wood_drum": "ןǝɹɹɐᗺ uǝpooM pǝʇɐoƆ ƎℲ⟘Ԁ",
   "item.rutile.fluid_cell": "ןןǝƆ pınןℲ %s",
+  "rutile.never_hatches.export.tooltip": "˙ɹǝʞɹɐɯ ןɐɹnʇɔnɹʇs ɐ ʇsnظ 'buıɥʇʎuɐ ʇɹodxǝ oʇ ǝןqɐu∩ㄥ§",
+  "rutile.never_hatches.import.tooltip": "˙ɹǝʞɹɐɯ ןɐɹnʇɔnɹʇs ɐ ʇsnظ 'buıɥʇʎuɐ ʇɹodɯı oʇ ǝןqɐu∩ㄥ§",
   "rutile.universal.tooltip.fluid_stored": "%s ᗺɯ %s '%sɟ§ :pǝɹoʇS pınןℲᄅ§"
 }
