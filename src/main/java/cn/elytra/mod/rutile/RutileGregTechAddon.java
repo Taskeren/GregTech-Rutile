@@ -1,6 +1,7 @@
 package cn.elytra.mod.rutile;
 
 import cn.elytra.mod.rutile.common.drumcoating.CoatedDrum;
+import cn.elytra.mod.rutile.common.dummyhatches.DummyHatches;
 import cn.elytra.mod.rutile.common.unitcell.UnitCell;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
@@ -45,6 +46,7 @@ public class RutileGregTechAddon implements IGTAddon {
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         CoatedDrum.addRecipes(provider);
         UnitCell.addRecipes(provider);
+        DummyHatches.addRecipes(provider);
     }
 
 }
